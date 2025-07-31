@@ -19,3 +19,26 @@ dependencies {
     implementation 'com.github.guneyilmaz0:RCON:1.0'
 }
 ```
+
+## Quick Start
+
+- Kotlin
+```kotlin
+
+fun main() {
+    val hostname = "localhost"
+    val port = 19132
+    val password = "rconpassword"
+
+    try {
+        Rcon.open(hostname, port).use { rcon ->
+            rcon.tryAuthenticate(password)
+            val response = rcon.sendCommand("list")
+            println("Response: $response")
+        }
+    } catch (ex: Exception) {
+        println("Error: ${ex.message}")
+        ex.printStackTrace()
+    }
+}
+```
