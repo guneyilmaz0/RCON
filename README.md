@@ -16,7 +16,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.github.guneyilmaz0:RCON:1.0'
+    implementation 'com.github.guneyilmaz0:RCON:1.0.0'
 }
 ```
 
