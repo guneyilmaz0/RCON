@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "net.guneyilmaz0.rcon"
-version = "1.0.0"
+version = "1.0.1"
 
 repositories {
     mavenCentral()
@@ -23,5 +23,5 @@ kotlin {
 }
 
 application {
-    mainClass.set("com.example.MainKt")
+    mainClass.set("net.guneyilmaz0.rcon.MainKt")
 }

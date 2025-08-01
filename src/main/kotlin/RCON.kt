@@ -46,7 +46,7 @@ class RCON(
             }
         }
         if (response.type != PacketType.SERVERDATA_AUTH_RESPONSE) {
-            throw IOException("Geçersiz kimlik doğrulama yanıtı: ${response.type}")
+            throw IOException("Wrong authentication response type: ${response.type}")
         }
         return response.isValid
     }
@@ -54,7 +54,7 @@ class RCON(
     @Throws(IOException::class)
     fun tryAuthenticate(password: String) {
         if (!authenticate(password)) {
-            throw IOException("Kimlik doğrulama başarısız")
+            throw IOException("Authentication failed")
         }
     }
 
@@ -63,10 +63,10 @@ class RCON(
         val response = writeAndRead(PacketType.SERVERDATA_EXECCOMMAND, command)
 
         if (response.type != PacketType.SERVERDATA_RESPONSE_VALUE) {
-            throw IOException("Yanlış komut yanıtı türü: ${response.type}")
+            throw IOException("Wrong command response type: ${response.type}")
         }
         if (!response.isValid) {
-            throw IOException("Geçersiz komut yanıtı: ${response.payload}")
+            throw IOException("Invalid command response: ${response.payload}")
         }
         return response.payload
     }
@@ -84,7 +84,7 @@ class RCON(
     private fun read(expectedRequestId: Int): Packet {
         val response = reader.read()
         if (response.isValid && response.requestId != expectedRequestId) {
-            throw IOException("Beklenmeyen yanıt kimliği ($expectedRequestId -> ${response.requestId})")
+            throw IOException("Unexpected response request ID: ${response.requestId}, expected: $expectedRequestId")
         }
         return response
     }

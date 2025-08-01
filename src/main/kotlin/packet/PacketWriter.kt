@@ -14,7 +14,7 @@ class PacketWriter(
     @Throws(IOException::class)
     fun write(packet: Packet): Int {
         if (packet.payload.length > 1446) {
-            throw IllegalArgumentException("Paket içeriği çok büyük")
+            throw IllegalArgumentException("Packet payload exceeds maximum size of 1446 bytes: ${packet.payload.length}")
         }
 
         buffer.clear()

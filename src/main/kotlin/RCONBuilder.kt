@@ -21,7 +21,7 @@ class RCONBuilder {
     fun withCharset(charset: Charset) = apply { this.charset = charset }
 
     fun build(): RCON {
-        val chan = requireNotNull(channel) { "channel boş bırakılamaz" }
+        val chan = requireNotNull(channel) { "Channel must be set before building RCON" }
         return RCON(chan, readBufferCapacity, writeBufferCapacity, PacketCodec(charset))
     }
 }
